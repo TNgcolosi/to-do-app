@@ -10,28 +10,34 @@
 </head>
 <body>
     <?php require('functions.php'); ?>
+   
+   <?php 
+   if(isset($_POST['submit'])) {
+        add_the_things($_POST['submit']);
+    } ?>
 
+    
 
-
-
+    
     <div class="container">
     <h1 class="text-center" >The app that will make you do the pots</h1>
     <form action="" method="post">
+    <?php if(!empty($_SESSION['thingstobedone'])) { ?>
     <div class="form-group">
     <ul class="list-group"> 
+    <?php foreach ($_SESSION['thingstobedone'] as $things) { ?>
 
-    <li class="list-group-item list-group-item-dark"> Do the pots</li></ul>
+    <li class="list-group-item list-group-item-<?php echo $things['thethings'] ?>"></li><?php }?>
+    </ul>
+    <?php } ?>
     
     <label for="exampleFormControlTextarea1">Add to list</label>
     </div>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <input type="text" class="form-control" name="thingstobedone" id="exampleFormControlTextarea1" rows="3">
     
     
-    <button type="button" class="btn btn-outline-primary">make the things</button>
+    <button type="submit" name="submit" class="btn btn-outline-primary" value="make the things">Make the things</button>
     
-    
-    
-    <!-- </ul> -->
     </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
