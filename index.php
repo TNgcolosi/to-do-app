@@ -13,7 +13,7 @@
    
    <?php 
    if(isset($_POST['submit'])) {
-        add_the_things($_POST['submit']);
+        add_the_things($_POST['thingstobedone']);
     } ?>
 
     
@@ -26,8 +26,9 @@
     <div class="form-group">
     <ul class="list-group"> 
     <?php foreach ($_SESSION['thingstobedone'] as $things) { ?>
+        <?php var_dump($things) ?>
 
-    <li class="list-group-item list-group-item-<?php echo $things['thethings'] ?>"></li><?php }?>
+    <li class="list-group-item list-group-item-<?php echo $things ?>"></li><?php }?>
     </ul>
     <?php } ?>
     
@@ -36,7 +37,7 @@
     <input type="text" class="form-control" name="thingstobedone" id="exampleFormControlTextarea1" rows="3">
     
     
-    <button type="submit" name="submit" class="btn btn-outline-primary" value="make the things">Make the things</button>
+    <button type="submit" name="submit" class="btn btn-outline-primary" value="make the things" >Make the things</button>
     
     </div>
 
