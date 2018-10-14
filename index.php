@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,31 +14,34 @@
    
    <?php 
    if(isset($_POST['submit'])) {
-        add_the_things($_POST['thingstobedone']);
+        add_the_things($_POST['todoTask']);
     } ?>
 
     
 
     
     <div class="container">
-    <h1 class="text-center" >The app that will make you do the pots</h1>
+    <h1 class="text-center" >To Do List</h1>
     <form action="" method="post">
-    <?php if(!empty($_SESSION['thingstobedone'])) { ?>
+    <?php if(!empty($_SESSION['todoTask'])) { ?>
     <div class="form-group">
-    <ul class="list-group"> 
-    <?php foreach ($_SESSION['thingstobedone'] as $things) { ?>
-        <?php var_dump($things) ?>
+    
+    <?php foreach ($_SESSION['todoTask'] as $key => $tasks) { ?>
+        <ul class="list-group"> 
+        <?php var_dump($tasks) ?>
 
-    <li class="list-group-item list-group-item-<?php echo $things ?>"></li><?php }?>
+    <li class="list-group-item list-group-item-<?php echo $tasks ?>"></li>
     </ul>
+    <?php }?>
+    
     <?php } ?>
     
-    <label for="exampleFormControlTextarea1">Add to list</label>
+    <label for="exampleFormControlTextarea1">Add Task</label>
     </div>
-    <input type="text" class="form-control" name="thingstobedone" id="exampleFormControlTextarea1" rows="3">
+    <input type="text" class="form-control" name="todoTask" id="exampleFormControlTextarea1" rows="3">
     
     
-    <button type="submit" name="submit" class="btn btn-outline-primary" value="make the things" >Make the things</button>
+    <button type="submit" name="submit" class="btn btn-outline-primary" value="Add" >Add</button>
     
     </div>
 

@@ -1,8 +1,8 @@
 <?php 
 
-function add_the_things($things) {
-
-$_SESSION['thingstobedone']['thethings'] = $things;
+function add_the_things($tasks) {
+$key = key($_SESSION['todoTask']);
+$_SESSION['todoTask']['task'] = $tasks;
 }
 
 
