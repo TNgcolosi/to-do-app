@@ -15,7 +15,17 @@
    <?php 
    if(isset($_POST['submit'])) {
         add_the_things($_POST['todoTask']);
-    } ?>
+    }
+    
+    if(isset($_POST['delete'])) {
+        delete($_POST['delete']);
+    }
+
+    if(isset($_POST['edit'])) {
+        edit($_POST['edit']);
+    }
+
+    ?>
 
     
 
@@ -29,7 +39,13 @@
     <?php foreach ($_SESSION['todoTask'] as $key => $tasks) : ?> 
     
 
-    <li class="list-group-item list-group-item-dark"><?php echo $tasks; ?></li>
+    <li class="list-group-item list-group-item-dark"><?php echo $tasks; ?>
+    
+    <div class="float-right">
+    <button type="submit" name="delete" value="<?php echo $key ?>"class="btn btn-outline-danger">Delete</button>
+    <button type="submit" name="edit" value="<?php echo $key ?>" class="btn btn-outline-light">Edit</button>
+    
+    </div><br></li>
     
 
     <?php endforeach; ?>
