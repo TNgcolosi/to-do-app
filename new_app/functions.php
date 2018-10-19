@@ -10,25 +10,13 @@ function delete($tasks) {
     unset($_SESSION['todoTask'][$tasks]);
 }
 
-function edit($tasks) {
-    delete($tasks);
-    ?> 
-    <div class="form-group">
-    
-    <label for="todoTask">Add to list</label>
-    
-    <input type="text" class="form-control" name="todoTask" placeholder="Send adoption forms...">
-    </div>
-    
-    <button type="submit" name="submit" class="btn btn-outline-primary" value="submit" >Make the things</button>
-    
-    </div>
-<?php }
+
 
 function resubmit($tasks) {
-    end($_SESSION['resubmit']);
-    $key = key($_SESSION['resubmit']);
-    $_SESSION['resubmit'][$key + 1]= $tasks;
+    end($_SESSION['saveChanges']);
+    $key = key($_SESSION['saveChanges']);
+    $_SESSION['saveChanges'][$key + 1]= $tasks;
+    
 }
 
 

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Make The Pots</title>
+    <title>To Do App</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 </head>
@@ -21,25 +21,7 @@
         delete($_POST['delete']);
     }
 
-    if(isset($_POST['edit'])) {
-        delete($_POST['edit']);?>
-        <div class="container">
-        <form action="" method="post">
-        <div class="form-group">
     
-        <label for="todoTask">Add to list</label>
-    
-        <input type="text" class="form-control" name="todoTask" value="<?php echo $key ?>">
-        </div>
-    
-        <button type="submit" name="resubmit" class="btn btn-outline-primary" value="resubmit" >Make the things</button>
-        </div>
-         </div>
-   <?php }
-
-   if(isset($_POST['resubmit'])) {
-        resubmit($_POST['resubmit']);
-   }
 
     ?>
 
@@ -47,7 +29,7 @@
 
     
     <div class="container">
-    <h1 class="text-center" >The app that will make the pots to be done</h1>
+    <h1 class="text-center" >To Do</h1>
     <form action="" method="post">
     <?php if(!empty($_SESSION['todoTask'])) : ?>
     <!-- <div class="form-group"> -->
@@ -59,7 +41,7 @@
     
     <div class="float-right">
     <button type="submit" name="delete" value="<?php echo $key ?>"class="btn btn-outline-danger">Delete</button>
-    <button type="submit" name="edit" value="<?php echo $key ?>" class="btn btn-outline-light">Edit</button>
+    <button type="submit" name="edit" value="<?php echo $tasks?>" class="btn btn-outline-light">Edit</button>
     
     </div><br></li>
     
@@ -70,12 +52,39 @@
     
     <div class="form-group">
     
+    <?php
+            if(isset($_POST['edit'])) {
+                delete($_POST['edit']);?>
+                
+                <form action="" method="post">
+                <div class="form-group">
+            
+                <label for="todoTask">Edit Task</label>
+            
+                <input type="text" class="form-control" name="todoTask" value="<?php echo $_POST['edit']?>">
+                
+                </div>
+            
+                <button type="submit" name="saveChanges" class="btn btn-outline-primary">Save Changes</button>
+                
+                
+           <?php }
+        
+           if(isset($_POST['saveChanges'])) {
+            
+                resubmit($_POST['saveChanges']);
+                var_dump($_POST['saveChanges']);
+           }
+    
+    
+    ?>
+
     <label for="todoTask">Add to list</label>
     
     <input type="text" class="form-control" name="todoTask" placeholder="Send adoption forms...">
     </div>
     
-    <button type="submit" name="submit" class="btn btn-outline-primary" value="submit" >Make the things</button>
+    <button type="submit" name="submit" class="btn btn-outline-primary" value="submit" >Add Task </button>
     
     </div>
 
