@@ -22,8 +22,24 @@
     }
 
     if(isset($_POST['edit'])) {
-        edit($_POST['edit']);
-    }
+        delete($_POST['edit']);?>
+        <div class="container">
+        <form action="" method="post">
+        <div class="form-group">
+    
+        <label for="todoTask">Add to list</label>
+    
+        <input type="text" class="form-control" name="todoTask" value="<?php echo $key ?>">
+        </div>
+    
+        <button type="submit" name="resubmit" class="btn btn-outline-primary" value="resubmit" >Make the things</button>
+        </div>
+         </div>
+   <?php }
+
+   if(isset($_POST['resubmit'])) {
+        resubmit($_POST['resubmit']);
+   }
 
     ?>
 
@@ -48,7 +64,7 @@
     </div><br></li>
     
 
-    <?php endforeach; ?>
+    <?php endforeach; ?> 
     </ul>
     <?php endif; ?>
     

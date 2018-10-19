@@ -25,4 +25,11 @@ function edit($tasks) {
     </div>
 <?php }
 
+function resubmit($tasks) {
+    end($_SESSION['resubmit']);
+    $key = key($_SESSION['resubmit']);
+    $_SESSION['resubmit'][$key + 1]= $tasks;
+}
+
+
 ?>
