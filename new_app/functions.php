@@ -10,12 +10,15 @@ function delete($tasks) {
     unset($_SESSION['todoTask'][$tasks]);
 }
 
-
+function edit($tasks) {
+    unset($_SESSION['edit']);
+}
 
 function resubmit($tasks) {
-    end($_SESSION['saveChanges']);
-    $key = key($_SESSION['saveChanges']);
-    $_SESSION['saveChanges'][$key + 1]= $tasks;
+     end($_POST['saveChanges']);
+    // $key = key($_SESSION['saveChanges']);
+    $key = key($_SESSION['todoTask']);
+    array_push($_SESSION['todoTask'], $_POST['saveChanges']);
     
 }
 

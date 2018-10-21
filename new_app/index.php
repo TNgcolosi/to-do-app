@@ -21,11 +21,12 @@
         delete($_POST['delete']);
     }
 
-    
-
+    if(isset($_POST['edit'])) {
+        delete($_POST['edit']);
+       
+      
+     }
     ?>
-
-    
 
     
     <div class="container">
@@ -41,7 +42,7 @@
     
     <div class="float-right">
     <button type="submit" name="delete" value="<?php echo $key ?>"class="btn btn-outline-danger">Delete</button>
-    <button type="submit" name="edit" value="<?php echo $tasks?>" class="btn btn-outline-light">Edit</button>
+    <button type="submit" name="edit" value="<?php  echo $key . $tasks ?>" class="btn btn-outline-light">Edit</button>
     
     </div><br></li>
     
@@ -52,39 +53,13 @@
     
     <div class="form-group">
     
-    <?php
-            if(isset($_POST['edit'])) {
-                delete($_POST['edit']);?>
-                
-                <form action="" method="post">
-                <div class="form-group">
-            
-                <label for="todoTask">Edit Task</label>
-            
-                <input type="text" class="form-control" name="todoTask" value="<?php echo $_POST['edit']?>">
-                
-                </div>
-            
-                <button type="submit" name="saveChanges" class="btn btn-outline-primary">Save Changes</button>
-                
-                
-           <?php }
-        
-           if(isset($_POST['saveChanges'])) {
-            
-                resubmit($_POST['saveChanges']);
-                var_dump($_POST['saveChanges']);
-           }
-    
-    
-    ?>
 
-    <label for="todoTask">Add to list</label>
+    <label for="todoTask"><?php if(isset($_POST['edit'])) {echo 'Edit Task'; } else { echo 'Add to list';} ?></label>
     
-    <input type="text" class="form-control" name="todoTask" placeholder="Send adoption forms...">
+    <input type="text" class="form-control" name="todoTask" value="<?php if(isset($_POST['edit'])) { echo $_POST['edit'];}?>" placeholder="<?php if(!isset($_POST['edit'])) {echo 'Type to do item here';} ?>">
     </div>
     
-    <button type="submit" name="submit" class="btn btn-outline-primary" value="submit" >Add Task </button>
+    <button type="submit" name="submit" class="btn btn-outline-primary" value="submit" ><?php if(isset($_POST['edit'])) {echo 'Save Changes'; } else { echo 'Add Task';} ?> </button>
     
     </div>
 
