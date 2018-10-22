@@ -38,11 +38,14 @@
     <?php foreach ($_SESSION['todoTask'] as $key => $tasks) : ?> 
     
 
-    <li class="list-group-item list-group-item-dark"><?php echo $tasks; ?>
+    <li class="list-group-item list-group-item-light"><?php echo $tasks; ?>
+
     
     <div class="float-right">
+    <h6><span class="badge badge-secondary"><?php if(isset($_POST['dueDate'])) {echo $_POST['dueDate'];} ?></span></h6>
+               
     <button type="submit" name="delete" value="<?php echo $key ?>"class="btn btn-outline-danger">Delete</button>
-    <button type="submit" name="edit" value="<?php  echo $key . $tasks ?>" class="btn btn-outline-light">Edit</button>
+    <button type="submit" name="edit" value="<?php  echo $key ?>" class="btn btn-outline-info">Edit</button>
     
     </div><br></li>
     
@@ -58,8 +61,10 @@
     
     <input type="text" class="form-control" name="todoTask" value="<?php if(isset($_POST['edit'])) { echo $_POST['edit'];}?>" placeholder="<?php if(!isset($_POST['edit'])) {echo 'Type to do item here';} ?>">
     </div>
+    <input type="date" name="dueDate" value="DueDate">
+    <button type="submit" name="submit" class="btn btn-outline-primary" value="submit"><?php if(isset($_POST['edit'])) {echo 'Save Changes'; } else { echo 'Add Task';} ?> </button>
     
-    <button type="submit" name="submit" class="btn btn-outline-primary" value="submit" ><?php if(isset($_POST['edit'])) {echo 'Save Changes'; } else { echo 'Add Task';} ?> </button>
+    
     
     </div>
 
