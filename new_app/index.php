@@ -14,7 +14,7 @@
    
    <?php 
    if(isset($_POST['submit'])) {
-        add_the_things($_POST['todoTask']);
+        add_todo($_POST['todoTask']);
     }
     
     if(isset($_POST['delete'])) {
@@ -25,46 +25,36 @@
         delete($_POST['edit']);
        
       
-     }
+    }
     ?>
 
     
     <div class="container">
-    <h1 class="text-center" >To Do</h1>
+        <h1 class="text-center" >To Do</h1>
     <form action="" method="post">
-    <?php if(!empty($_SESSION['todoTask'])) : ?>
-    <!-- <div class="form-group"> -->
-    <ul class="list-group"> 
-    <?php foreach ($_SESSION['todoTask'] as $key => $tasks) : ?> 
-    
-
-    <li class="list-group-item list-group-item-light"><?php echo $tasks; ?>
+        <?php if(!empty($_SESSION['todoTask'])) : ?>
+            <ul class="list-group"> 
+                <?php foreach ($_SESSION['todoTask'] as $key => $tasks) : ?> 
+                <li class="list-group-item list-group-item-light"><?php echo $tasks; ?>
 
     
     <div class="float-right">
-    <h6><span class="badge badge-secondary"><?php if(isset($_POST['dueDate'])) {echo $_POST['dueDate'];} ?></span></h6>
-               
-    <button type="submit" name="delete" value="<?php echo $key ?>"class="btn btn-outline-danger">Delete</button>
-    <button type="submit" name="edit" value="<?php  echo $key ?>" class="btn btn-outline-info">Edit</button>
+        <h6><span class="badge badge-secondary"><?php if(!empty($_POST['dueDate'])) {foreach ($_POST['dueDate'] as $date) {echo $date;}} ?></span></h6>     
+            <button type="submit" name="delete" value="<?php echo $key ?>"class="btn btn-outline-danger">Delete</button>
+            <button type="submit" name="edit" value="<?php  echo $key ?>" class="btn btn-outline-info">Edit</button>
     
-    </div><br></li>
-    
-
-    <?php endforeach; ?> 
-    </ul>
-    <?php endif; ?>
+    </div><br>
+                    </li>
+                <?php endforeach; ?> 
+            </ul>
+        <?php endif; ?>
     
     <div class="form-group">
-    
-
-    <label for="todoTask"><?php if(isset($_POST['edit'])) {echo 'Edit Task'; } else { echo 'Add to list';} ?></label>
-    
-    <input type="text" class="form-control" name="todoTask" value="<?php if(isset($_POST['edit'])) { echo $_POST['edit'];}?>" placeholder="<?php if(!isset($_POST['edit'])) {echo 'Type to do item here';} ?>">
+        <label for="todoTask"><?php if(isset($_POST['edit'])) {echo 'Edit Task'; } else { echo 'Add to list';} ?></label>
+        <input type="text" class="form-control" name="todoTask" value="<?php if(isset($_POST['edit'])) { echo $_POST['edit'];}?>" placeholder="<?php if(!isset($_POST['edit'])) {echo 'Type to do item here';} ?>">
     </div>
-    <input type="date" name="dueDate" value="DueDate">
-    <button type="submit" name="submit" class="btn btn-outline-primary" value="submit"><?php if(isset($_POST['edit'])) {echo 'Save Changes'; } else { echo 'Add Task';} ?> </button>
-    
-    
+        <input type="date" name="dueDate[]" value="DueDate">
+        <button type="submit" name="submit" class="btn btn-outline-primary" value="submit"><?php if(isset($_POST['edit'])) {echo 'Save Changes'; } else { echo 'Add Task';} ?> </button>
     
     </div>
 
