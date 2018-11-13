@@ -15,7 +15,7 @@ function delete_task($task) {
 
 function edit_task($task) {
     $key = key($_SESSION['todo']);
-    return $_SESSION['todo'][$key][0];
+    return  implode($_SESSION['todo'][$key]);
 }
 
 function update_task($todoitem, $duedate) {

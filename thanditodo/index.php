@@ -34,7 +34,7 @@
             </ul>
             <?php endif; ?>
             <label for="todo" class="badge badge-secondary"> Add To Do Item</label>
-            <input type="text" name="todo" value="<?php if(isset($_POST['editbtn'])) : echo edit_task($_SESSION['todo']); endif; ?>" class="form-control" placeholder="Add to do item here...">
+            <input type="text" name="todo" value="<?php if(isset($_POST['editbtn'])) : echo substr(edit_task($_SESSION['todo']), 0, -10); endif; ?>" class="form-control" placeholder="Add to do item here...">
             <label for="due_date" class="badge badge-secondary">Due Date</label>
             <input type="date" name="due_date" value="due_date" class="form-control">
             <button type="submit" class="btn btn-secondary" name="add_todo" value="add_todo"> Add To Do</button>
