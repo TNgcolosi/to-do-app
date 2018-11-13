@@ -11,7 +11,7 @@
 <body>
 <?php require('functions.php'); ?>
 <?php (isset($_POST['add_todo'])) ? add_todo($_POST['todo'], $_POST['due_date']) : " "; 
-var_dump($_SESSION);?>
+// var_dump($_SESSION);?>
 
 <div class="container card">
     <h1 class="text-center"> To Do App </h1>
@@ -19,7 +19,11 @@ var_dump($_SESSION);?>
         <?php if(!empty($_SESSION['todo'])) :  ?>
             <ul class="list-group">
             <?php foreach($_SESSION['todo'] as $key => $task) : ?>
-                <li class="list-group-item"><?php echo implode($task); ?></li>
+                <li class="list-group-item"><?php echo $task[0]; ?>
+                <button type="button" class="btn btn-outline-danger float-right">Delete</button>
+                <button type="button" class="btn btn-outline-info float-right">Edit</button>
+                <span class="badge badge-light float-right"><?php echo $task[1] ?></span>
+                </li>
             <?php endforeach; ?>    
             </ul>
             <?php endif; ?>
