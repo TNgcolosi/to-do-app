@@ -16,13 +16,13 @@ var_dump($_SESSION);?>
 <div class="container card">
     <h1 class="text-center"> To Do App </h1>
         <form method="post" action="">
+        <?php if(!empty($_SESSION['todo'])) :  ?>
             <ul class="list-group">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
+            <?php foreach($_SESSION['todo'] as $key => $task) : ?>
+                <li class="list-group-item"><?php echo implode($task); ?></li>
+            <?php endforeach; ?>    
             </ul>
+            <?php endif; ?>
             <label for="todo" class="badge badge-secondary"> Add To Do Item</label>
             <input type="text" name="todo" value="I need to " class="form-control" placeholder="Add to do item here...">
             <label for="due_date" class="badge badge-secondary">Due Date</label>
