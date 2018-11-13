@@ -13,5 +13,16 @@ function delete_task($task) {
     unset($_SESSION['todo'][$key]);
 }
 
+function edit_task($task) {
+    $key = key($_SESSION['todo']);
+    return $_SESSION['todo'][$key][0];
+}
+
+function update_task($todoitem, $duedate) {
+    $key = key($_SESSION['todo']);
+    unset($_SESSION['todo'][$key]);
+    add_todo($todoitem, $duedate);
+    
+}
 
 ?>

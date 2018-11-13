@@ -11,30 +11,34 @@
 <body>
 <?php require('functions.php'); ?>
 
-<?php (isset($_POST['add_todo'])) ? add_todo($_POST['todo'], $_POST['due_date']) : " "; 
-// var_dump($_SESSION);?>
+<?php   (isset($_POST['add_todo'])) ? add_todo($_POST['todo'], $_POST['due_date']) : " "; ?>
 
-<?php (isset($_POST['deletebtn'])) ? delete_task($_SESSION['todo'])  : " "; ?>
+<?php   (isset($_POST['deletebtn'])) ? delete_task($_SESSION['todo'])  : " "; ?>
+
+<?php   (isset($_POST['editbtn'])) ? edit_task($_SESSION['todo']) : " ";?>
+
+<?php   (isset($_POST['update'])) ? update_task($_POST['todo'], $_POST['due_date']) : " " ;?>
 
 <div class="container card">
-    <h1 class="text-center"> To Do App </h1>
+    <h1 class="text-center"> Just Do It </h1>
         <form method="post" action="">
         <?php if(!empty($_SESSION['todo'])) :  ?>
             <ul class="list-group">
             <?php foreach($_SESSION['todo'] as $key => $task) : ?>
                 <li class="list-group-item"><?php echo $task[0]; ?>
                 <button type="submit" name="deletebtn" value="<?php echo $key ?>"class="btn btn-outline-danger float-right">Delete</button>
-                <button type="submit" class="btn btn-outline-info float-right">Edit</button>
+                <button type="submit" name="editbtn" value="<?php echo $key ?>" class="btn btn-outline-info float-right">Edit</button>
                 <span class="badge badge-light float-right"><?php echo $task[1] ?></span>
                 </li>
             <?php endforeach; ?>    
             </ul>
             <?php endif; ?>
             <label for="todo" class="badge badge-secondary"> Add To Do Item</label>
-            <input type="text" name="todo" value="I need to " class="form-control" placeholder="Add to do item here...">
+            <input type="text" name="todo" value="<?php if(isset($_POST['editbtn'])) : echo edit_task($_SESSION['todo']); endif; ?>" class="form-control" placeholder="Add to do item here...">
             <label for="due_date" class="badge badge-secondary">Due Date</label>
             <input type="date" name="due_date" value="due_date" class="form-control">
             <button type="submit" class="btn btn-secondary" name="add_todo" value="add_todo"> Add To Do</button>
+            <button type="submit" class="btn btn-secondary" name="update" value="update"> Update</button>
 
 
         </form>
