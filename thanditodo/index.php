@@ -10,8 +10,11 @@
 </head>
 <body>
 <?php require('functions.php'); ?>
+
 <?php (isset($_POST['add_todo'])) ? add_todo($_POST['todo'], $_POST['due_date']) : " "; 
 // var_dump($_SESSION);?>
+
+<?php (isset($_POST['deletebtn'])) ? delete_task($_SESSION['todo'])  : " "; ?>
 
 <div class="container card">
     <h1 class="text-center"> To Do App </h1>
@@ -20,8 +23,8 @@
             <ul class="list-group">
             <?php foreach($_SESSION['todo'] as $key => $task) : ?>
                 <li class="list-group-item"><?php echo $task[0]; ?>
-                <button type="button" class="btn btn-outline-danger float-right">Delete</button>
-                <button type="button" class="btn btn-outline-info float-right">Edit</button>
+                <button type="submit" name="deletebtn" value="<?php echo $key ?>"class="btn btn-outline-danger float-right">Delete</button>
+                <button type="submit" class="btn btn-outline-info float-right">Edit</button>
                 <span class="badge badge-light float-right"><?php echo $task[1] ?></span>
                 </li>
             <?php endforeach; ?>    

@@ -8,5 +8,10 @@ function add_todo($todoitem, $duedate) {
 
 }
 
+function delete_task($task) {
+    $key = key($_SESSION['todo']);
+    unset($_SESSION['todo'][$key]);
+}
+
 
 ?>
