@@ -8,9 +8,8 @@ function add_todo($todoitem, $duedate) {
 
 }
 
-function delete_task($task) {
-    $key = key($_SESSION['todo']);
-    unset($_SESSION['todo'][$key]);
+function delete_task($key) {
+       unset($_SESSION['todo'][$key]);
 }
 
 function edit_task($task) {
@@ -24,5 +23,14 @@ function update_task($todoitem, $duedate) {
     add_todo($todoitem, $duedate);
     
 }
+
+function sort_tasks($date1, $date2) {
+    return strtotime($date1[1]) - strtotime($date2[1]);
+}
+
+function sort_by_date() {
+    usort($_SESSION['todo'], 'sort_tasks');
+}
+
 
 ?>

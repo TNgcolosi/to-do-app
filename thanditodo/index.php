@@ -13,11 +13,13 @@
 
 <?php   (isset($_POST['add_todo'])) ? add_todo($_POST['todo'], $_POST['due_date']) : " "; ?>
 
-<?php   (isset($_POST['deletebtn'])) ? delete_task($_SESSION['todo'])  : " "; ?>
+<?php   (isset($_POST['deletebtn'])) ? delete_task($_POST['deletebtn'])  : " "; ?>
 
 <?php   (isset($_POST['editbtn'])) ? edit_task($_SESSION['todo']) : " ";?>
 
 <?php   (isset($_POST['update'])) ? update_task($_POST['todo'], $_POST['due_date']) : " " ;?>
+
+<?php   (isset($_POST['sort_date'])) ? sort_by_date() : " "; ?>
 
 <div class="container card">
     <h1 class="text-center"> Just Do It </h1>
@@ -26,9 +28,9 @@
             <ul class="list-group">
             <?php foreach($_SESSION['todo'] as $key => $task) : ?>
                 <li class="list-group-item"><?php echo $task[0]; ?>
-                <button type="submit" name="deletebtn" value="<?php echo $key ?>"class="btn btn-outline-danger float-right">Delete</button>
-                <button type="submit" name="editbtn" value="<?php echo $key ?>" class="btn btn-outline-info float-right">Edit</button>
-                <span class="badge badge-light float-right"><?php echo $task[1] ?></span>
+                <button type="submit" name="deletebtn" value="<?php echo $key; ?>"class="btn btn-outline-danger float-right">Delete</button>
+                <button type="submit" name="editbtn" value="<?php echo $key; ?>" class="btn btn-outline-info float-right">Edit</button>
+                <span class="badge badge-light float-right"><?php echo $task[1]; ?></span>
                 </li>
             <?php endforeach; ?>    
             </ul>
@@ -39,7 +41,8 @@
             <input type="date" name="due_date" value="due_date" class="form-control">
             <button type="submit" class="btn btn-secondary" name="add_todo" value="add_todo"> Add To Do</button>
             <button type="submit" class="btn btn-secondary" name="update" value="update"> Update</button>
-
+            <button type="submit" class="btn btn-secondary" name="sort_date" value="sort_date"> Sort by Date </button>
+            
 
         </form>
 </div>
